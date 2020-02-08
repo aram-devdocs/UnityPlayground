@@ -53,7 +53,7 @@ public class playerController : MonoBehaviour
     {
 
         float horizontal = Input.GetAxisRaw("Horizontal");
-        bool jump = Input.GetButton("Fire3");
+        bool jump = Input.GetButton("Jump");
 
         box = new Rect(
             col.bounds.min.x,
@@ -85,7 +85,8 @@ public class playerController : MonoBehaviour
                 {
                     if (speed > 0) speed -= halting;
                 }
-            } else
+            }
+            else
             {
                 if (speed > 0) speed -= halting;
             }
@@ -136,7 +137,7 @@ public class playerController : MonoBehaviour
 
             Debug.DrawLine(origin, hit.point, Color.red);
 
-            if (found) 
+            if (found)
             {
                 newVelocity = new Vector3(0, rb.velocity.y, 0);
                 break;
@@ -160,9 +161,9 @@ public class playerController : MonoBehaviour
             float lerpAmount = (float)i / ((float)groundRays - 1);
             Vector3 origin = Vector3.Lerp(start, end, lerpAmount);
             Ray ray = new Ray(origin, Vector3.down);
-            
+
             found = Physics.Raycast(ray, out hit, distance, mask);
-            
+
             //Debug.DrawLine(origin, hit.point, Color.red);
 
             if (found)
